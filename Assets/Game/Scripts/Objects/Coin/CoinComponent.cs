@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace Game.Scripts.Objects.Coin
 {
@@ -8,22 +9,14 @@ namespace Game.Scripts.Objects.Coin
         [SerializeField] private GameObject _coin;
         [SerializeField] private GameObject _effect;
         
-        // Start is called before the first frame update
-        void Start()
-        {
-        
-        }
-
-        // Update is called once per frame
-        void Update()
-        {
-        
-        }
+        public static event UnityAction OnCoinCollected;
 
         private void OnTriggerEnter(Collider other)
         {
             if (other.CompareTag("Player"))
             {
+                OnCoinCollected?.Invoke();
+                
                 Destroy(_coin);
                 Destroy(_effect, 1.0f);
                 Destroy(gameObject, 1.0f);

@@ -28,6 +28,10 @@ namespace Game.Scripts.Player
             var moveValue = _playerInputs.Movements.Move.ReadValue<Vector2>();
             _playerController.Move(moveValue);
             
+            var cameraValue = _playerInputs.Camera.Controlling.ReadValue<Vector2>();
+            _playerController.CameraControlling(cameraValue);
+            
+            
         }
     }
 }
